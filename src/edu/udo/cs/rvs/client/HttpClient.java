@@ -138,7 +138,7 @@ public class HttpClient extends Thread {
 			// Falls über der GET Methode (key,value) angehängt sind (z.b
 			// index.html?name=value&name1=value1
 			if (path.contains("?")) {
-				
+
 				break;
 			}
 
@@ -166,12 +166,21 @@ public class HttpClient extends Thread {
 			if (file == null) {
 				writeResponse(StatusCode.NOT_FOUND, "Die Seite konnte nicht gefunden werden.");
 				break;
+			} else {
+				try {
+					if(!file.getCanonicalPath().startsWith(HttpServer.wwwroot.getCanonicalPath())) {
+						writeResponse(StatusCode.FORBIDDEN, "This Area of the Website is Forbidden!");
+						break;
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 
 			// Überprüft ob im Request Header die Opton If-Modified-Since angegeben
 			Date if_modified;
 			try {
-				//Wandelt den String in ein Date Objekt um
+				// Wandelt den String in ein Date Objekt um
 				if ((if_modified = Utils.toDate(request.get("If-Modified-Since"))) != null) {
 					// Holt sich den Zeitpunkt wann die Datei das letzte mal bearbeitet wurde
 					// Zur Zeitzone des Host Computers
@@ -188,7 +197,7 @@ public class HttpClient extends Thread {
 						break;
 					}
 				}
-			}catch(DateFormatException ex) {
+			} catch (DateFormatException ex) {
 				System.out.println(ex.getMessage());
 			}
 
