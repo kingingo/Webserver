@@ -138,8 +138,8 @@ public class HttpClient extends Thread {
 			// Falls über der GET Methode (key,value) angehängt sind (z.b
 			// index.html?name=value&name1=value1
 			if (path.contains("?")) {
-				
-				break;
+				int index = path.indexOf('?');
+				path = path.substring(0,index);
 			}
 			
 			File file = null;
