@@ -12,6 +12,7 @@ import edu.udo.cs.rvs.client.StatusCode;
  * Sammelt alle Informationen zum Request/Response Header
  * 
  * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public class Header {
 

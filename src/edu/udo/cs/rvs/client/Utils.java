@@ -16,7 +16,8 @@ import edu.udo.cs.rvs.date.HttpDateFormat;
 /**
  * Nützliche einzelne Methoden
  * 
- * @author Felix Obenaus (Matrikelnr 205637)
+ * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public class Utils {
 	private static final long SECOND = 1000;

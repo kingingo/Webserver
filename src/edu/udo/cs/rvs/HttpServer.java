@@ -13,10 +13,9 @@ import edu.udo.cs.rvs.client.HttpClient;
  * weitere Klassen erstellen, sowie Klassen aus den in der Aufgabe aufgelisteten
  * Paketen benutzen. Achten Sie darauf, Ihren Code zu dokumentieren und moegliche
  * Ausnahmen (Exceptions) sinnvoll zu behandeln.
- *
- * @author Vorname Nachname, Matrikelnummer
- * @author Vorname Nachname, Matrikelnummer
- * @author Vorname Nachname, Matrikelnummer
+ * 
+ * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public class HttpServer
 {

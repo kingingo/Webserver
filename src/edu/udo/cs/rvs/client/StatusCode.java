@@ -2,7 +2,9 @@ package edu.udo.cs.rvs.client;
 
 /**
  * Gibt die einzelen Status Codes für HTTP an
+ * 
  * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public enum StatusCode {
 OK(200,"OK"),

@@ -3,7 +3,8 @@ package edu.udo.cs.rvs.date;
 /**
  * Enum für HttpDateFormat womit die Monate erkannt werden können.
  * 
- * @author Felix Obenaus (Matrikelnr 205637)
+ * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public enum Month {
 JANUARY("Jan"),

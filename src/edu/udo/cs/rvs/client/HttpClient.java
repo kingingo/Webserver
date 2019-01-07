@@ -16,8 +16,9 @@ import edu.udo.cs.rvs.date.DateFormatException;
 
 /**
  * Client Objekt um die Konversation mit den Client & Server durchzuführen
- * 
+ *
  * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public class HttpClient extends Thread {
 	/**

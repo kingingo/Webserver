@@ -19,7 +19,8 @@ import java.util.TimeZone;
  * 
  * Desweiteren erkennt der Pattern auch TimeZone.IDs z.b GMT oder UTC
  * 
- * @author Felix Obenaus (Matrikelnr 205637)
+ * @author Felix Obenaus (Matrikelnr. 205637)
+ * @author Abdulhamed Chribati (Matrikelnr. 206317)
  */
 public class HttpDateFormat {
 	private String format;
