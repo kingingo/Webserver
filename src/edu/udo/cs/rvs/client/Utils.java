@@ -156,14 +156,29 @@ public class Utils {
 		header.add("Last-Modified", toDateString(file.lastModified()));
 		return header;
 	}
+	
+	/**
+	 * Gibt den richtigen Pfad + ROOT Pfad zurück
+	 */
+	public static File toFile(String path) {
+		// Erstellt ein File Objekt mit den Pfad ROOT+PATH
+		return new File(HttpServer.wwwroot.getAbsolutePath() + path);
+	}
+	
+	/**
+	 * Überprüft ob die @file ein Ordner ist oder nicht.
+	 */
+	public static boolean isDirectory(String path) {
+		File file = toFile(path);
+		return file.isDirectory();
+	}
 
 	/**
 	 * Überprüft ob eine Datei vorhanden im Pfad ROOT_PFAD + path falls ja wird die
 	 * Datei zurückgegeben falls nicht wird null zurückgegeben.
 	 */
 	public static File getFile(String path) {
-		// Erstellt ein File Objekt mit den Pfad ROOT+PATH
-		File file = new File(HttpServer.wwwroot.getAbsolutePath() + path);
+		File file = toFile(path);
 		// Falls die Datei existiert wird sie zurückgegeben
 		if (file.exists())
 			return file;
@@ -190,7 +205,9 @@ public class Utils {
 	public static File getIndexFile(String path) {
 		path = HttpServer.wwwroot.getAbsolutePath() + path;
 
-		if (existFile(path + File.separatorChar + "index.html")) {
+		if (existFile(path + File.separatorChar + "index.php")) {
+			return new File(path + File.separatorChar + "index.php");
+		}else if (existFile(path + File.separatorChar + "index.html")) {
 			return new File(path + File.separatorChar + "index.html");
 		} else if (existFile(path + File.separatorChar + "index.htm")) {
 			return new File(path + File.separatorChar + "index.htm");

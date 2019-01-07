@@ -8,7 +8,7 @@ package edu.udo.cs.rvs;
  *
  */
 public class Main {
-	private static final int DEFAULT_PORT = 80;
+	private static final int DEFAULT_PORT = 1080;
 
 	/**
 	 * @param arguments the command line arguments

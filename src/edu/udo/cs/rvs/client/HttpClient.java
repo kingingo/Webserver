@@ -138,14 +138,14 @@ public class HttpClient extends Thread {
 			// Falls über der GET Methode (key,value) angehängt sind (z.b
 			// index.html?name=value&name1=value1
 			if (path.contains("?")) {
-
+				
 				break;
 			}
-
+			
 			File file = null;
 			// Falls keine Datei angegeben ist sondern nur ein Pfad soll eine Index Datei
 			// gesucht werden
-			if (path.endsWith("/")) {
+			if (Utils.isDirectory(path)) {
 				// Sucht in dem Pfad ("path") eine Index Datei
 				file = Utils.getIndexFile(path);
 
@@ -156,7 +156,7 @@ public class HttpClient extends Thread {
 					writeResponse(StatusCode.NO_CONTENT);
 					break;
 				}
-			} else {
+			}else {
 				// Sucht die angegebene Datei von "path"
 				file = Utils.getFile(path);
 			}
