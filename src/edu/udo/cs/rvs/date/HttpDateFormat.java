@@ -175,11 +175,6 @@ public class HttpDateFormat {
 		return parse(index);
 	}
 	
-	private boolean onlyOneNumber(int index) {
-		return (dateString.charAt(index) == ' ' && Character.isDigit(dateString.charAt(index+1)))
-				|| (dateString.charAt(index+1) == ' ' && Character.isDigit(dateString.charAt(index)));
-	}
-	
 	/**
 	 * Liest aus dem @dateString eine Zahl aus die aus dem char @c besteht
 	 * und von @index bis @index+@add geht und setzt es im Calendar unter den @field fest.
@@ -188,10 +183,10 @@ public class HttpDateFormat {
 	private int checkInteger(int field, char c, int index, int add) throws DateFormatException {
 		//Ueberprueft ob der char @c im String @format vom Index @index bis @index+@add geht.
 		if (charInARow(index, index + add, c)) {
-			String subString = dateString.substring(index, index + add);
-			String trimed = subString.trim();
+			String subString = substring(index, index + add);
+			String trimed = trim(subString);
 			if(subString.length() != trimed.length()) {
-				dateString = dateString.substring(0, index)+" "+dateString.substring(index, dateString.length()-1);
+				dateString = dateString.substring(0, index)+" "+dateString.substring(index, dateString.length());
 				subString = trimed;
 			}
 			
@@ -203,6 +198,15 @@ public class HttpDateFormat {
 			throwException();
 		}
 		return index + (add + 1);
+	}
+	
+	private String substring(int from, int to) {
+		if(to >= dateString.length())to=dateString.length();
+		return dateString.substring(from, to);
+	}
+	
+	private String trim(String value) {
+		return value.replaceAll("[^0-9]","");
 	}
 
 	/**

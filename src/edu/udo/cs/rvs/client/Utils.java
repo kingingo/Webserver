@@ -102,18 +102,6 @@ public class Utils {
 		cal.setTimeInMillis(milis);
 		return cal.getTime().toGMTString();
 	}
-
-	public static void main(String[] args) {
-		try {
-			HttpDateFormat format = new HttpDateFormat("dd MMM yyyy HH:mm:ss", TimeZone.getDefault());
-			//                       "dd MMM yyyy HH:mm:ss"
-			Date date = format.parse("08 Jan 2019 14:49:01 GMT");
-			System.out.println("DATE:"+date);
-		} catch (DateFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
 	private static HttpDateFormat[] formats = new HttpDateFormat[] {
 			new HttpDateFormat("dd MMM yyyy HH:mm:ss", TimeZone.getDefault()),
