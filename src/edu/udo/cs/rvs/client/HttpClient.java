@@ -131,6 +131,10 @@ public class HttpClient extends Thread {
 
 		// Gibt die Request Art aus
 		String method = tokens[0];
+		/*
+		 * True => nur der Header wird übermittelt ohne body
+		 * False => Header & Body werden übermittelt 
+		 */
 		boolean head_request = false;
 		switch (method) {
 		case "HEAD":
