@@ -83,6 +83,8 @@ public class HttpClient extends Thread {
 			if (this.socket != null)
 				this.socket.close();
 
+			this.in=null;
+			this.out=null;
 			// Entfernt den Client von der Liste
 			this.server.remove(this);
 		} catch (IOException e) {
@@ -118,7 +120,8 @@ public class HttpClient extends Thread {
 
 		// Gibt die Http Version des Request Header
 		Float version = request.getVersion();
-
+		
+		// version=2.0 -> compareTo: 2.0 - 1.1 = 0.9 > 0 somit BAD_REQUEST
 		// Falls die Version über 1.1 ist kann der Webserver nicht damit umgehen.
 		if (version.compareTo(1.1F) > 0) {
 			writeResponse(StatusCode.BAD_REQUEST);
@@ -182,6 +185,10 @@ public class HttpClient extends Thread {
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
+					
+					//Fehler beim Client melden
+					sendInternalServerError(head_request);
+					break;
 				}
 			}
 

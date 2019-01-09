@@ -88,7 +88,7 @@ public class Header {
 			this.head = line;
 			return this;
 		}
-
+		
 		// Gibt den Index an wo sich der Charakter ':' im String line befindet
 		int index = line.indexOf(':');
 		// Falls der index = -1 ist dann stimmt das Format (key:value) nicht und es wird
@@ -111,8 +111,7 @@ public class Header {
 		// Entfernt sie erst falls schon eine Angabe vorhanden ist
 		remove(name);
 		// Fügt die neue Angabe hinzu
-		// trim() entfernt leerzeichen im String
-		this.header.put(name, value.trim());
+		this.header.put(name, value);
 		return this;
 	}
 

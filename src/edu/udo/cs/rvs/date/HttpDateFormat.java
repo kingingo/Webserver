@@ -150,7 +150,7 @@ public class HttpDateFormat {
 		case 'E':
 			if (charInARow(index, index + 3, c)) {
 				/*
-				 *  Wird Ü¼bersprungen weil der Tag (Mon,Tue,Wed,Thu,Fri,Sat,Sun) ist nicht wichtig
+				 *  Wird Ü¼uebersprungen weil der Tag (Mon,Tue,Wed,Thu,Fri,Sat,Sun) ist nicht wichtig
 				 *  eher der Tag im Monat dd (00-31)
 				 */
 				index += (3 + 1);
@@ -184,7 +184,7 @@ public class HttpDateFormat {
 		//Ueberprueft ob der char @c im String @format vom Index @index bis @index+@add geht.
 		if (charInARow(index, index + add, c)) {
 			String subString = substring(index, index + add);
-			//Es wird geprüft ob subString nur Zahlen hat 
+			//Es wird geprueft ob subString nur Zahlen hat 
 			String trimed = trim(subString);
 			if(subString.length() != trimed.length()) {
 				//dateString muss erweitert werden damit der Index weiterhin passt...
@@ -208,7 +208,7 @@ public class HttpDateFormat {
 	}
 	
 	/**
-	 * Entfernt alles außer Zahlen ausdem String.
+	 * Entfernt alles auï¿½er Zahlen ausdem String.
 	 */
 	private String trim(String value) {
 		return value.replaceAll("[^0-9]","");
