@@ -111,7 +111,7 @@ public class Header {
 		// Entfernt sie erst falls schon eine Angabe vorhanden ist
 		remove(name);
 		// Fügt die neue Angabe hinzu
-		this.header.put(name, value);
+		this.header.put(name, value.trim());
 		return this;
 	}
 

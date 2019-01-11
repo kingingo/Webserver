@@ -65,7 +65,7 @@ public class HttpDateFormat {
 		}
 		return null;
 	}
-
+	
 	public Date parse(String dateString) throws DateFormatException {
 		return clone().parse0(dateString);
 	}
@@ -75,7 +75,7 @@ public class HttpDateFormat {
 	 * Zum starten der parse(int,String) Methode und um die Zeitzone anzupassen
 	 */
 	private Date parse0(String dateString) throws DateFormatException {
-		this.dateString=dateString;
+		this.dateString=dateString.trim();
 		
 		//Um zu ermitteln ob eine Zeitzone im String angegeben wurde.
 		TimeZone tz = getTimeZone();

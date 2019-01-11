@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import edu.udo.cs.rvs.FileHandler;
 import edu.udo.cs.rvs.Header;
 import edu.udo.cs.rvs.HttpServer;
 import edu.udo.cs.rvs.date.DateFormatException;
@@ -232,22 +233,9 @@ public class Utils {
 
 	/**
 	 * Liest aus einer Datei die bytes aus und speichert sie in einen byte-Array und
-	 * gibt dieses zurück
+	 * gibt dieses zurueck
 	 */
 	public static byte[] readFile(File file) throws IOException {
-		// InputStream extra für Datei um diese einfach Auszulesen
-		FileInputStream file_input = null;
-		// Erstellt ein byte-Array welches groß genug für die Datei ist.
-		byte[] buffer = new byte[(int) file.length()];
-		try {
-			// Erstellt ein FileInputStream mit der angegeben Datei (file)
-			file_input = new FileInputStream(file);
-			// Liest den InputStream aus und schreibt alles in das byte-Array (buffer)
-			file_input.read(buffer);
-		} finally {
-			// Schließt den FileInputStream
-			file_input.close();
-		}
-		return buffer;
+		return FileHandler.getInstance().readFile(file);
 	}
 }
