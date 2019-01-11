@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 import edu.udo.cs.rvs.Header;
@@ -106,7 +108,7 @@ public class Utils {
 	private static HttpDateFormat[] formats = new HttpDateFormat[] {
 			new HttpDateFormat("dd MMM yyyy HH:mm:ss", TimeZone.getDefault()),
 			new HttpDateFormat("EEE, dd MMM yyyy HH:mm:ss", TimeZone.getDefault())
-			};
+	};
 
 	/**
 	 * Konvertiert @param value (String) zu einen Date-Objekt. z.b "Sat, 29 Oct 1994

@@ -193,7 +193,7 @@ public class HttpClient extends Thread {
 					 * "if-Modified-Since" ist wird ein der StatusCode not Modified gesendet damit
 					 * der Browser die Webseite aus dem Cach lädt
 					 **/
-					if (if_modified.compareTo(last_modified) >= 0) {
+					if (if_modified.compareTo(last_modified) <= 0) {
 						writeResponse(StatusCode.NOT_MODIFIED);
 						break;
 					}

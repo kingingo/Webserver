@@ -108,6 +108,8 @@ public class HttpDateFormat {
 	private Date parse(int index) throws DateFormatException {
 		//Stopp Bedingung
 		if (index > this.format.length()) {
+			//Bas Datum wird bis zu sekunden angezeigt und f�r den vgl. (in HttpClient) ist es besser die Milisekunden auf 0 zu setzen.
+			this.calendar.set(Calendar.MILLISECOND, 0);
 			//Das Datum wird ausgegeben von Calendar
 			Date date = this.calendar.getTime();
 			//der Calendar wird wieder auf null gesetzt für den nächsten durchlauf
