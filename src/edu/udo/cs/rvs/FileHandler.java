@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.concurrent.Semaphore;
 
 public class FileHandler {
+	private static FileHandler instance;
+	
 	public static FileHandler getInstance() {
-		return new FileHandler();
+		if(instance==null)instance=new FileHandler();
+		return instance;
 	}
 	
 	private HashMap<String, Semaphore> semaphores = new HashMap<>();
@@ -16,7 +19,7 @@ public class FileHandler {
 	private FileHandler() {}
 	
 	/**
-	 * Gibt einen Semaphore zurück der zu dieser File zu geordnet wurde.
+	 * Gibt einen Semaphore zurï¿½ck der zu dieser File zu geordnet wurde.
 	 */
 	private Semaphore getSemaphore(File file) throws IOException {
 		Semaphore sem = null;
@@ -40,7 +43,7 @@ public class FileHandler {
 		// Erstellt ein byte-Array welches gross genug fuer die Datei ist.
 		byte[] buffer = new byte[(int) file.length()];
 		try {
-			//Stellt sicher das immer nur ein Thread read ausführt für die gleiche Datei
+			//Stellt sicher das immer nur ein Thread read ausfï¿½hrt fï¿½r die gleiche Datei
 			sem.acquire();
 			// Erstellt ein FileInputStream mit der angegeben Datei (file)
 			file_input = new FileInputStream(file);
