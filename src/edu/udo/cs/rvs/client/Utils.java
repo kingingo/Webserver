@@ -155,7 +155,7 @@ public class Utils {
 		 * Damit die PDF Datei aufrufbar ist
 		 */
 		if (file.getName().endsWith(".pdf")) {
-			header.add("Content-Disposition", "inline;filename=\"" + file.getName() + "\"");
+			header.add("Content-Disposition", "inline; filename=\"" + file.getName() + "\"");
 		}
 		// Setzt den letzten Änderungszeitpunkt der Datei in den Header
 		header.add("Last-Modified", toDateString(file.lastModified()));
