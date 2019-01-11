@@ -203,9 +203,9 @@ public class HttpClient extends Thread {
 					cal.setTimeInMillis(file.lastModified());
 					Date last_modified = cal.getTime();
 					/*
-					 * Falls der letzte Änderungszeitpunkt gleich oder kleiner als der Zeitpunkt von
+					 * Falls der letzte Aenderungszeitpunkt gleich oder kleiner als der Zeitpunkt von
 					 * "if-Modified-Since" ist wird ein der StatusCode not Modified gesendet damit
-					 * der Browser die Webseite aus dem Cach lädt
+					 * der Browser die Webseite aus dem Cach laedt
 					 **/
 					if (if_modified.compareTo(last_modified) <= 0) {
 						writeResponse(StatusCode.NOT_MODIFIED);
