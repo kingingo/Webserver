@@ -83,6 +83,8 @@ public class HttpClient extends Thread {
 			if (this.socket != null)
 				this.socket.close();
 
+			this.in=null;
+			this.out=null;
 			// Entfernt den Client von der Liste
 			this.server.remove(this);
 		} catch (IOException e) {
@@ -118,9 +120,10 @@ public class HttpClient extends Thread {
 
 		// Gibt die Http Version des Request Header
 		Float version = request.getVersion();
-
+		
+		// version=2.0 -> compareTo: 2.0 - 1.1 = 0.9 > 0 somit BAD_REQUEST
 		// Falls die Version über 1.1 ist kann der Webserver nicht damit umgehen.
-		if (version.compareTo(1.1F) < 0) {
+		if (version.compareTo(1.1F) > 0) {
 			writeResponse(StatusCode.BAD_REQUEST);
 			return;
 		}
@@ -131,7 +134,14 @@ public class HttpClient extends Thread {
 
 		// Gibt die Request Art aus
 		String method = tokens[0];
+		/*
+		 * True => nur der Header wird übermittelt ohne body
+		 * False => Header & Body werden übermittelt 
+		 */
+		boolean head_request = false;
 		switch (method) {
+		case "HEAD":
+			head_request = true;
 		case "GET":
 		case "POST":
 			// Gibt den Pfad der aufzurufenden Datei
@@ -165,16 +175,20 @@ public class HttpClient extends Thread {
 			// Falls keine Datei gefunden wurde, wird der 404 File Not Found StatusCode
 			// gesendet
 			if (file == null) {
-				writeResponse(StatusCode.NOT_FOUND, "Die Seite konnte nicht gefunden werden.");
+				writeResponse(StatusCode.NOT_FOUND, head_request,"Die Seite konnte nicht gefunden werden.");
 				break;
 			} else {
 				try {
 					if(!file.getCanonicalPath().startsWith(HttpServer.wwwroot.getCanonicalPath())) {
-						writeResponse(StatusCode.FORBIDDEN, "This Area of the Website is Forbidden!");
+						writeResponse(StatusCode.FORBIDDEN, head_request,"This Area of the Website is Forbidden!");
 						break;
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
+					
+					//Fehler beim Client melden
+					sendInternalServerError(head_request);
+					break;
 				}
 			}
 
@@ -203,9 +217,8 @@ public class HttpClient extends Thread {
 			}
 
 			// Die Datei wurde gefunden und nun wird auf die Anfrage geantwortet
-			writeResponse(file);
+			writeResponse(file, head_request);
 			break;
-		case "HEAD":
 		case "LINK":
 		case "UNLINK":
 		case "DELETE":
@@ -216,7 +229,7 @@ public class HttpClient extends Thread {
 		default:
 			// Er konnte die Anfrage nicht zuordnen also wird ein Server Error
 			// zurückgesendet
-			sendInternalServerError();
+			sendInternalServerError(head_request);
 			break;
 		}
 	}
@@ -224,8 +237,8 @@ public class HttpClient extends Thread {
 	/**
 	 * Sendet zum Client, das ein Server Error aufgetretten ist.
 	 */
-	public void sendInternalServerError() {
-		writeResponse(StatusCode.INTERNAL_SERVER_ERROR,
+	public void sendInternalServerError(boolean head) {
+		writeResponse(StatusCode.INTERNAL_SERVER_ERROR,head,
 				"Die Anfrage konnte nicht bearbeitet werden. Ein Server Fehler ist aufgetretten.");
 	}
 
@@ -244,12 +257,19 @@ public class HttpClient extends Thread {
 	 * @param code
 	 * @param content
 	 */
-	public void writeResponse(StatusCode code, String content) {
+	public void writeResponse(StatusCode code, boolean head, String content) {
 		content += "\n";
-		Header.create().addHeadline(code).add("Content-length", String.valueOf(content.length())).write(out);
-
+		byte[] bytes = Utils.toUTF8(content.getBytes());
+		Header.create()
+			.addHeadline(code)
+			.add("Content-length", String.valueOf(bytes.length))
+			.add("Content-Type","text/plain; charset=utf-8")
+			.write(out);
+		
+		
 		try {
-			out.writeBytes(content);
+			if(!head) 
+				out.write(bytes);
 			out.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -261,7 +281,7 @@ public class HttpClient extends Thread {
 	 * 
 	 * @param file
 	 */
-	public void writeResponse(File file) {
+	public void writeResponse(File file,boolean head) {
 		try {
 			// Liest die Datei aus und konvertiert alles zu einem byte array
 			byte[] file_buffer = Utils.readFile(file);
@@ -283,7 +303,7 @@ public class HttpClient extends Thread {
 				 * Server Error (500)
 				 */
 				if (file_buffer == null) {
-					sendInternalServerError();
+					sendInternalServerError(head);
 					return;
 				}
 			}
@@ -295,7 +315,8 @@ public class HttpClient extends Thread {
 			header.write(this.out);
 
 			// Schickt das byte-Array in den OutputStream
-			this.out.write(file_buffer);
+			if(!head) 
+				this.out.write(file_buffer);
 
 			// Schickt alles zum Client los
 			this.out.flush();
