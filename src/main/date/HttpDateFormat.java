@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs.date;
+package main.date;
 
 import java.util.Calendar;
 import java.util.Date;

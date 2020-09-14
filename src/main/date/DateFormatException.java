@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs.date;
+package main.date;
 
 /**
  * @author Felix Obenaus (Matrikelnr. 205637)

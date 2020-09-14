@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs.client;
+package main.client;
 
 /**
  * Gibt die einzelen Status Codes für HTTP an

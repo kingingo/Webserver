@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs.client;
+package main.client;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -10,9 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import edu.udo.cs.rvs.Header;
-import edu.udo.cs.rvs.HttpServer;
-import edu.udo.cs.rvs.date.DateFormatException;
+import main.Header;
+import main.HttpServer;
+import main.date.DateFormatException;
 
 /**
  * Client Objekt um die Konversation mit den Client & Server durchzuführen

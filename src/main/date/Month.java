@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs.date;
+package main.date;
 
 /**
  * Enum für HttpDateFormat womit die Monate erkannt werden können.

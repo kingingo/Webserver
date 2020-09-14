@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs;
+package main;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 
-import edu.udo.cs.rvs.client.StatusCode;
+import main.client.StatusCode;
 
 /**
  * Sammelt alle Informationen zum Request/Response Header

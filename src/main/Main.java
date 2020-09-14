@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs;
+package main;
 
 /**
  * Dies ist die Start-Klasse. Aenderungen an dieser Klassen sind NICHT

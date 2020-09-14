@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs.client;
+package main.client;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,11 +7,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import edu.udo.cs.rvs.FileHandler;
-import edu.udo.cs.rvs.Header;
-import edu.udo.cs.rvs.HttpServer;
-import edu.udo.cs.rvs.date.DateFormatException;
-import edu.udo.cs.rvs.date.HttpDateFormat;
+import main.FileHandler;
+import main.Header;
+import main.HttpServer;
+import main.date.DateFormatException;
+import main.date.HttpDateFormat;
 
 /**
  * Nützliche einzelne Methoden

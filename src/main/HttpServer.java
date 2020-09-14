@@ -1,4 +1,4 @@
-package edu.udo.cs.rvs;
+package main;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import edu.udo.cs.rvs.client.HttpClient;
+import main.client.HttpClient;
 
 /**
  * Nutzen Sie diese Klasse um den HTTP Server zu implementieren. Sie duerfen
